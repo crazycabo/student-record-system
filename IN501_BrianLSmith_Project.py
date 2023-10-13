@@ -79,8 +79,7 @@ def handle_option_input():
         display_students_in_msit_program()
 
     elif user_input == 6:
-        # todo: Display all students in MSCM program
-        pass
+        display_students_in_mscm_program()
 
     elif user_input == 7:
         # todo: Display all students in sorted order by student ID
@@ -165,7 +164,14 @@ def display_students_in_msit_program():
 
 
 def display_students_in_mscm_program():
-    pass
+    print('\nStudents in MSCM program')
+    print('------------------------')
+
+    for student in student_records:
+        if student[4] == 'MSCM':
+            print(f'{student[0]} - {student[2]},{student[1]} - Grade: {student[3]}')
+
+    print()  # Add spacing between calls
 
 
 def display_invalid_records():
