@@ -15,26 +15,26 @@ def handle_file_input():
         file_reader = csv.reader(file, delimiter=',')
 
         for row in file_reader:
-            exit_loop = False
+            skip_to_next_iteration = False
 
             # Validate non-empty records first
             for value in row:
                 if value == '':
                     invalid_student_records.append(row)
-                    exit_loop = True
+                    skip_to_next_iteration = True
                     break
 
             # Validate student grade is within normal bounds
             if float(row[3]) < 0 or float(row[3]) > 100:
                 invalid_student_records.append(row)
-                exit_loop = True
+                skip_to_next_iteration = True
 
             # Validate student program is either MSIT or MSCM
             if row[4] != 'MSIT' and row[4] != 'MSCM':
                 invalid_student_records.append(row)
-                exit_loop = True
+                skip_to_next_iteration = True
 
-            if exit_loop:
+            if skip_to_next_iteration:
                 continue
 
             # If record is valid, add to student records list
