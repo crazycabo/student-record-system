@@ -155,6 +155,7 @@ def display_students_in_msit_program():
     print('\nStudents in MSIT program')
     print('------------------------')
 
+    # todo: Display table in consistently spaced columns
     for student in student_records:
         if student[4] == 'MSIT':
             print(f'{student[0]} - {student[2]},{student[1]} - Grade: {student[3]}')
@@ -166,6 +167,7 @@ def display_students_in_mscm_program():
     print('\nStudents in MSCM program')
     print('------------------------')
 
+    # todo: Display table in consistently spaced columns
     for student in student_records:
         if student[4] == 'MSCM':
             print(f'{student[0]} - {student[2]},{student[1]} - Grade: {student[3]}')
@@ -179,6 +181,7 @@ def display_all_students_sorted_by_student_id():
     print('\nAll students')
     print('------------')
 
+    # todo: Display table in consistently spaced columns
     for record in sorted_records:
         print(f'{record[0]} - {record[2]},{record[1]} - {record[4]} - Grade: {record[3]}')
 
