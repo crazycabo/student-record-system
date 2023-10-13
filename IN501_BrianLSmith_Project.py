@@ -1,6 +1,8 @@
 import sys
 import csv
 import pprint
+import math
+
 
 student_records = []
 invalid_student_records = []
@@ -102,6 +104,58 @@ def handle_option_input():
 
     else:
         print('Invalid option selected. Please try again.\n')
+
+
+def calculate_average_grade_all_students():
+    sum_of_all_grades = 0
+    student_count = 0
+
+    # Round each input grade up, add to sum, and increment student count
+    for student in student_records:
+        sum_of_all_grades += math.ceil(float(student[3]))
+        student_count += 1
+
+    print(f'\nAverage grade of all students: {sum_of_all_grades / student_count:.1f}\n')
+
+
+def calculate_average_grade_each_program():
+    sum_of_all_grades_msit = 0
+    sum_of_all_grades_mscm = 0
+    student_count_msit = 0
+    student_count_mscm = 0
+
+    # Round each input grade up, add to sum, and increment student count for each program
+    for student in student_records:
+        if student[4] == 'MSIT':
+            sum_of_all_grades_msit += math.ceil(float(student[3]))
+            student_count_msit += 1
+        elif student[4] == 'MSCM':
+            sum_of_all_grades_mscm += math.ceil(float(student[3]))
+            student_count_mscm += 1
+
+    print('\nAverage grade of all students in each program')
+    print(f'MSIT: {sum_of_all_grades_msit / student_count_msit:.1f}')
+    print(f'MSCM: {sum_of_all_grades_mscm / student_count_mscm:.1f}\n')
+
+
+def get_highest_grade_record():
+    highest_grade = 0
+
+    for student in student_records:
+        if float(student[3]) > highest_grade:
+            highest_grade = float(student[3])
+
+    print(f'\nHighest student grade: {highest_grade:.1f}\n')
+
+
+def get_lowest_grade_record():
+    lowest_grade = 100
+
+    for student in student_records:
+        if float(student[3]) < lowest_grade:
+            lowest_grade = float(student[3])
+
+    print(f'\nLowest student grade: {lowest_grade:.1f}\n')
 
 
 def display_invalid_records():
