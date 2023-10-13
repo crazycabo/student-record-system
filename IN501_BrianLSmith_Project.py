@@ -64,20 +64,16 @@ def handle_option_input():
     user_input = int(input('Input option by number: '))
 
     if user_input == 1:
-        # todo: Calculate then display average grade for all students
-        pass
+        calculate_average_grade_all_students()
 
     elif user_input == 2:
-        # todo: Calculate then display average grade for each program
-        pass
+        calculate_average_grade_each_program()
 
     elif user_input == 3:
-        # todo: Display the highest grade record
-        pass
+        get_highest_grade_record()
 
     elif user_input == 4:
-        # todo: Display the lowest grade record
-        pass
+        get_lowest_grade_record()
 
     elif user_input == 5:
         # todo: Display all students in MSIT program
