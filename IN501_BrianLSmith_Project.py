@@ -76,8 +76,7 @@ def handle_option_input():
         get_lowest_grade_record()
 
     elif user_input == 5:
-        # todo: Display all students in MSIT program
-        pass
+        display_students_in_msit_program()
 
     elif user_input == 6:
         # todo: Display all students in MSCM program
@@ -152,6 +151,21 @@ def get_lowest_grade_record():
             lowest_grade = float(student[3])
 
     print(f'\nLowest student grade: {lowest_grade:.1f}\n')
+
+
+def display_students_in_msit_program():
+    print('\nStudents in MSIT program')
+    print('------------------------')
+
+    for student in student_records:
+        if student[4] == 'MSIT':
+            print(f'{student[0]} - {student[2]},{student[1]} - Grade: {student[3]}')
+
+    print()  # Add spacing between calls
+
+
+def display_students_in_mscm_program():
+    pass
 
 
 def display_invalid_records():
