@@ -1,6 +1,5 @@
 import sys
 import csv
-import pprint
 import math
 
 
@@ -156,11 +155,11 @@ def get_lowest_grade_record():
 
 
 def display_invalid_records():
-    pp = pprint.PrettyPrinter(indent=4)
-
     print('\nInvalid Records')
+    print('---------------')
 
-    pp.pprint(invalid_student_records)
+    for student in invalid_student_records:
+        print(student)
 
     print()
 
