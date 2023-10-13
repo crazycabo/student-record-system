@@ -62,6 +62,7 @@ def display_user_options():
 
 def handle_option_input():
     user_input = int(input('Input option by number: '))
+    # todo: Validate user input is an integer
 
     if user_input == 1:
         calculate_average_grade_all_students()
