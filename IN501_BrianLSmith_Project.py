@@ -82,8 +82,7 @@ def handle_option_input():
         display_students_in_mscm_program()
 
     elif user_input == 7:
-        # todo: Display all students in sorted order by student ID
-        pass
+        display_all_students_sorted_by_student_id()
 
     elif user_input == 8:
         display_invalid_records()
@@ -170,6 +169,18 @@ def display_students_in_mscm_program():
     for student in student_records:
         if student[4] == 'MSCM':
             print(f'{student[0]} - {student[2]},{student[1]} - Grade: {student[3]}')
+
+    print()  # Add spacing between calls
+
+
+def display_all_students_sorted_by_student_id():
+    sorted_records = sorted(student_records, key=lambda x: x[0])  # Sort where x[0] is student ID
+
+    print('\nAll students')
+    print('------------')
+
+    for record in sorted_records:
+        print(f'{record[0]} - {record[2]},{record[1]} - {record[4]} - Grade: {record[3]}')
 
     print()  # Add spacing between calls
 
