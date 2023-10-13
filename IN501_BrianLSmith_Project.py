@@ -114,7 +114,15 @@ def display_invalid_records():
     print()
 
 
+def verify_python_3():
+    # Halt execution if Python 3 or greater is not installed
+    if sys.version_info[0] < 3:
+        print('Python 3 or greater is required to run this program.')
+        sys.exit(1)
+
+
 if __name__ == "__main__":
+    verify_python_3()
     handle_file_input()
 
     while True:
