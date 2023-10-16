@@ -188,11 +188,16 @@ def display_all_students_sorted_by_student_id():
 
 
 def display_invalid_records():
-    print('\nInvalid Records')
-    print('---------------')
+    if len(invalid_student_records) > 0:
+        print('\nInvalid Records')
+        print('---------------')
 
-    for student in invalid_student_records:
-        print(student)
+        for student in invalid_student_records:
+            print(student)
+    else:
+        print('No invalid records exist to display.')
+
+    print()  # Add spacing between calls
 
     print()
 
