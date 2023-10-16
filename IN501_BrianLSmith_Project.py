@@ -182,41 +182,56 @@ def get_lowest_grade_record():
 
 
 def display_students_in_msit_program():
-    print('\nStudents in MSIT program')
-    print('------------------------')
+    formatted_records = []
 
-    # todo: Display table in consistently spaced columns
+    print('\nStudents in MSIT program:\n')
+
     for student in student_records:
         if student[4] == 'MSIT':
-            # Display as "[student ID] - [last name],[first name] - Grade: [grade]"
-            print(f'{student[0]} - {student[2]},{student[1]} - Grade: {student[3]}')
+            formatted_records.append([student[0], f'{student[2]}, {student[1]}', student[3]])
 
-    print()  # Add spacing between calls
+    formatted_records.sort(key=lambda x: x[1])  # sort records by last name for easier reading
+    draw_table(formatted_records, ['Student ID', 'Last, First Name', 'Grade'])
 
 
 def display_students_in_mscm_program():
-    print('\nStudents in MSCM program')
-    print('------------------------')
+    formatted_records = []
 
-    # todo: Display table in consistently spaced columns
+    print('\nStudents in MSCM program:\n')
+
     for student in student_records:
         if student[4] == 'MSCM':
-            # Display as "[student ID] - [last name],[first name] - Grade: [grade]"
-            print(f'{student[0]} - {student[2]},{student[1]} - Grade: {student[3]}')
+            formatted_records.append([student[0], f'{student[2]}, {student[1]}', student[3]])
 
-    print()  # Add spacing between calls
+    formatted_records.sort(key=lambda x: x[1])  # sort records by last name for easier reading
+    draw_table(formatted_records, ['Student ID', 'Last, First Name', 'Grade'])
 
 
 def display_all_students_sorted_by_student_id():
     sorted_records = sorted(student_records, key=lambda x: x[0])  # Sort where x[0] is student ID
+    formatted_records = []
 
-    print('\nAll students')
-    print('------------')
+    print('\nAll students:\n')
 
-    # todo: Display table in consistently spaced columns
     for record in sorted_records:
-        # Display as "[student ID] - [last name],[first name] - [program] - Grade: [grade]"
-        print(f'{record[0]} - {record[2]},{record[1]} - {record[4]} - Grade: {record[3]}')
+        formatted_records.append([record[0], f'{record[2]}, {record[1]}', record[4], record[3]])
+
+    draw_table(formatted_records, ['Student ID', 'Last, First Name', 'Program', 'Grade'])
+
+
+def draw_table(data, labels):
+    data.insert(0, labels)  # Insert labels as first row of data for correct column spacing
+
+    # calculate max width for each column by finding longest string in each column
+    column_widths = [max(map(len, col)) for col in zip(*data)]
+
+    for rowIndex in range(len(data)):
+        # create rows of data with correct spacing based on column width calculations
+        print(' | '.join(format(val, f'{width}s') for val, width in zip(data[rowIndex], column_widths)))
+
+        if rowIndex == 0:
+            # print header row separator
+            print('-' * (sum(column_widths) + 3 * len(column_widths) - 1))
 
     print()  # Add spacing between calls
 
