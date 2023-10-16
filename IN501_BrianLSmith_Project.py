@@ -15,6 +15,7 @@ def handle_file_input():
             file_name = input('File name: ')
 
             if file_name.lower() == 'exit':
+                # Exit program by user request
                 sys.exit(0)
 
             with open(file_name, 'r') as file:
@@ -120,7 +121,7 @@ def handle_option_input():
         create_invalid_records_file()
 
     elif user_input == 0:
-        # Exit the program
+        # Exit program by user request
         sys.exit(0)
 
     else:
@@ -187,6 +188,7 @@ def display_students_in_msit_program():
     # todo: Display table in consistently spaced columns
     for student in student_records:
         if student[4] == 'MSIT':
+            # Display as "[student ID] - [last name],[first name] - Grade: [grade]"
             print(f'{student[0]} - {student[2]},{student[1]} - Grade: {student[3]}')
 
     print()  # Add spacing between calls
@@ -199,6 +201,7 @@ def display_students_in_mscm_program():
     # todo: Display table in consistently spaced columns
     for student in student_records:
         if student[4] == 'MSCM':
+            # Display as "[student ID] - [last name],[first name] - Grade: [grade]"
             print(f'{student[0]} - {student[2]},{student[1]} - Grade: {student[3]}')
 
     print()  # Add spacing between calls
@@ -212,6 +215,7 @@ def display_all_students_sorted_by_student_id():
 
     # todo: Display table in consistently spaced columns
     for record in sorted_records:
+        # Display as "[student ID] - [last name],[first name] - [program] - Grade: [grade]"
         print(f'{record[0]} - {record[2]},{record[1]} - {record[4]} - Grade: {record[3]}')
 
     print()  # Add spacing between calls
