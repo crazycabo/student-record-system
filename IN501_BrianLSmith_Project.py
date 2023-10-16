@@ -87,8 +87,7 @@ def handle_option_input():
         display_invalid_records()
 
     elif user_input == 9:
-        # todo: Create a new file containing invalid records
-        pass
+        create_invalid_records_file()
 
     elif user_input == 0:
         # Exit the program
@@ -199,7 +198,21 @@ def display_invalid_records():
 
     print()  # Add spacing between calls
 
-    print()
+
+def create_invalid_records_file():
+    if len(invalid_student_records) > 0:
+        try:
+            with open('BADRECORDS.TXT', 'w') as file:
+                file_writer = csv.writer(file)
+
+                for student in invalid_student_records:
+                    file_writer.writerow(student)
+
+            print(f'\nBADRECORDS.TXT file created with {len(invalid_student_records)} invalid records.\n')
+        except Exception as ex:
+            print(f'\nUnable to create BADRECORDS.TXT file. {ex}\n')
+    else:
+        print('\nNo invalid records exist to write to file.\n')
 
 
 def verify_python_3():
