@@ -85,6 +85,7 @@ def handle_option_input():
             if user_input not in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]:
                 print(error_message)
                 continue
+
             else:
                 valid_option_input = True
 
@@ -149,6 +150,7 @@ def calculate_average_grade_each_program():
         if student[4] == 'MSIT':
             sum_of_all_grades_msit += math.ceil(float(student[3]))
             student_count_msit += 1
+
         elif student[4] == 'MSCM':
             sum_of_all_grades_mscm += math.ceil(float(student[3]))
             student_count_mscm += 1
@@ -222,6 +224,7 @@ def display_invalid_records():
 
         for student in invalid_student_records:
             print(student)
+
     else:
         print('No invalid records exist to display.')
 
@@ -238,8 +241,10 @@ def create_invalid_records_file():
                     file_writer.writerow(student)
 
             print(f'\nBADRECORDS.TXT file created with {len(invalid_student_records)} invalid records.\n')
+
         except Exception as ex:
             print(f'\nUnable to create BADRECORDS.TXT file. {ex}\n')
+
     else:
         print('\nNo invalid records exist to write to file.\n')
 
