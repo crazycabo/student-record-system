@@ -21,6 +21,9 @@ def handle_file_input():
             with open(file_name, 'r') as file:
                 file_reader = csv.reader(file, delimiter=',')
 
+                if file_reader.line_num == 0:
+                    raise Exception('File is empty!')
+
                 for row in file_reader:
                     skip_to_next_iteration = False
 
