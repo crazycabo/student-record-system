@@ -7,40 +7,55 @@ invalid_student_records = []
 
 
 def handle_file_input():
-    file_name = input('Enter file name: ')
+    valid_file_exists = False
 
-    # todo: validate file exists before attempting to open
+    while not valid_file_exists:
+        try:
+            print('Enter the name of a file relative to this program\'s path.')
+            file_name = input('File name: ')
 
-    with open(file_name, 'r') as file:
-        file_reader = csv.reader(file, delimiter=',')
+            if file_name.lower() == 'exit':
+                sys.exit(0)
 
-        for row in file_reader:
-            skip_to_next_iteration = False
+            with open(file_name, 'r') as file:
+                file_reader = csv.reader(file, delimiter=',')
 
-            # Validate non-empty records first
-            for value in row:
-                if value == '':
-                    invalid_student_records.append(row)
-                    skip_to_next_iteration = True
-                    break
+                for row in file_reader:
+                    skip_to_next_iteration = False
 
-            # Validate student grade is within normal bounds
-            if float(row[3]) < 0 or float(row[3]) > 100:
-                invalid_student_records.append(row)
-                skip_to_next_iteration = True
+                    # Validate non-empty records first
+                    for value in row:
+                        if value == '':
+                            invalid_student_records.append(row)
+                            skip_to_next_iteration = True
+                            break
 
-            # Validate student program is either MSIT or MSCM
-            if row[4] != 'MSIT' and row[4] != 'MSCM':
-                invalid_student_records.append(row)
-                skip_to_next_iteration = True
+                    # Validate student grade is within normal bounds
+                    if float(row[3]) < 0 or float(row[3]) > 100:
+                        invalid_student_records.append(row)
+                        skip_to_next_iteration = True
 
-            if skip_to_next_iteration:
-                continue
+                    # Validate student program is either MSIT or MSCM
+                    if row[4] != 'MSIT' and row[4] != 'MSCM':
+                        invalid_student_records.append(row)
+                        skip_to_next_iteration = True
 
-            # If record is valid, add to student records list
-            student_records.append(row)
+                    if skip_to_next_iteration:
+                        continue
 
-    print(f'\nProcessed {len(student_records)} student records and {len(invalid_student_records)} invalid records.\n')
+                    # If record is valid, add to student records list
+                    student_records.append(row)
+
+            print(f'\nFound {len(student_records)} student records and {len(invalid_student_records)} are invalid.\n')
+
+            valid_file_exists = True
+
+        except FileNotFoundError:
+            print(f'\nUnable to find or open file. Please try again or enter \'exit\' to stop program.\n')
+
+        except Exception as ex:
+            print(f'\nAn error occurred while processing file: {ex}')
+            print(f'Please try again or enter \'exit\' to stop program.\n')
 
 
 def display_user_options():
