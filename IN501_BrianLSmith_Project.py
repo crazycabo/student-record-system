@@ -74,8 +74,22 @@ def display_user_options():
 
 
 def handle_option_input():
-    user_input = int(input('Input option by number: '))
-    # todo: Validate user input is an integer
+    valid_option_input = False
+    user_input = None
+    error_message = 'You must enter an integer from 0 to 9. Please try again.\n'
+
+    while not valid_option_input:
+        try:
+            user_input = int(input('Input option by number: '))
+
+            if user_input not in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]:
+                print(error_message)
+                continue
+            else:
+                valid_option_input = True
+
+        except ValueError:
+            print(error_message)
 
     if user_input == 1:
         calculate_average_grade_all_students()
