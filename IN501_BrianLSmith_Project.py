@@ -2,7 +2,6 @@ import sys
 import csv
 import math
 
-
 student_records = []
 invalid_student_records = []
 
