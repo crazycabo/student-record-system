@@ -21,6 +21,7 @@ def handle_file_input():
             with open(file_name, 'r') as file:
                 file_reader = csv.reader(file, delimiter=',')
 
+                # Check if file is empty
                 if file_reader.line_num == 0:
                     raise Exception('File is empty!')
 
@@ -82,6 +83,7 @@ def handle_option_input():
     user_input = None
     error_message = 'You must enter an integer from 0 to 9. Please try again.\n'
 
+    # Loop input request until valid input is received
     while not valid_option_input:
         try:
             user_input = int(input('Input option by number: '))
@@ -97,16 +99,16 @@ def handle_option_input():
             print(error_message)
 
     if user_input == 1:
-        calculate_average_grade_all_students()
+        display_average_grade_all_students()
 
     elif user_input == 2:
-        calculate_average_grade_each_program()
+        display_average_grade_each_program()
 
     elif user_input == 3:
-        get_highest_grade_record()
+        display_highest_grade_record()
 
     elif user_input == 4:
-        get_lowest_grade_record()
+        display_lowest_grade_record()
 
     elif user_input == 5:
         display_students_in_msit_program()
@@ -131,7 +133,7 @@ def handle_option_input():
         print('Invalid option selected. Please try again.\n')
 
 
-def calculate_average_grade_all_students():
+def display_average_grade_all_students():
     sum_of_all_grades = 0
     student_count = 0
 
@@ -143,7 +145,7 @@ def calculate_average_grade_all_students():
     print(f'\nAverage grade of all students: {sum_of_all_grades / student_count:.1f}\n')
 
 
-def calculate_average_grade_each_program():
+def display_average_grade_each_program():
     sum_of_all_grades_msit = 0
     sum_of_all_grades_mscm = 0
     student_count_msit = 0
@@ -164,9 +166,10 @@ def calculate_average_grade_each_program():
     print(f'MSCM: {sum_of_all_grades_mscm / student_count_mscm:.1f}\n')
 
 
-def get_highest_grade_record():
+def display_highest_grade_record():
     highest_grade = 0
 
+    # Loop through all records and compare grade to current highest grade
     for student in student_records:
         if float(student[3]) > highest_grade:
             highest_grade = float(student[3])
@@ -174,9 +177,10 @@ def get_highest_grade_record():
     print(f'\nHighest student grade: {highest_grade:.1f}\n')
 
 
-def get_lowest_grade_record():
+def display_lowest_grade_record():
     lowest_grade = 100
 
+    # Loop through all records and compare grade to current lowest grade
     for student in student_records:
         if float(student[3]) < lowest_grade:
             lowest_grade = float(student[3])
@@ -189,6 +193,7 @@ def display_students_in_msit_program():
 
     print('\nStudents in MSIT program:\n')
 
+    # Loop through all records and add to formatted records list if program is MSIT
     for student in student_records:
         if student[4] == 'MSIT':
             formatted_records.append([student[0], f'{student[2]}, {student[1]}', student[3]])
@@ -202,6 +207,7 @@ def display_students_in_mscm_program():
 
     print('\nStudents in MSCM program:\n')
 
+    # Loop through all records and add to formatted records list if program is MSCM
     for student in student_records:
         if student[4] == 'MSCM':
             formatted_records.append([student[0], f'{student[2]}, {student[1]}', student[3]])
