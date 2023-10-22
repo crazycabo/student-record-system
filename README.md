@@ -1,7 +1,7 @@
 # Student Record System
 This is the course project for Purdue Global IN501 Fundamentals of Computer Programming.
 
-## Functionality:
+## Functionality
 1. Ask user to input the name of a valid record file within the same directory as the program root.
 2. If the file does not exist, print error message and request input again.
 3. If user enters the word "exit", the program will terminate.
@@ -27,5 +27,6 @@ This is the course project for Purdue Global IN501 Fundamentals of Computer Prog
       - If an unknown option exists, print error message and request input again.
 
 ## Process Flowchart
-The document below is a flowchart of the program's process.
+The document below is a flowchart of the application's process logic.
+
 ![Flowchart](project_flowchart.png)
