@@ -25,3 +25,7 @@ This is the course project for Purdue Global IN501 Fundamentals of Computer Prog
       - If 8, display invalid records.
       - If 9, create file named "BADRECORDS.TXT" containing all invalid input records.
       - If an unknown option exists, print error message and request input again.
+
+## Process Flowchart
+The document below is a flowchart of the program's process.
+![Flowchart](project_flowchart.png)
