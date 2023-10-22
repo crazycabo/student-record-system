@@ -220,7 +220,7 @@ def display_all_students_sorted_by_student_id():
     sorted_records = sorted(student_records, key=lambda x: x[0])  # Sort where x[0] is student ID
     formatted_records = []
 
-    print('\nAll students:\n')
+    print('\nAll students sorted by student ID:\n')
 
     for record in sorted_records:
         formatted_records.append([record[0], f'{record[2]}, {record[1]}', record[4], record[3]])
