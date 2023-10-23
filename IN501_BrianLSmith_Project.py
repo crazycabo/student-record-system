@@ -20,12 +20,13 @@ def handle_file_input():
 
             with open(file_name, 'r') as file:
                 file_reader = csv.reader(file, delimiter=',')
+                data = list(file_reader)
 
                 # Check if file is empty
-                if file_reader.line_num == 0:
+                if len(data) == 0:
                     raise Exception('File is empty!')
 
-                for row in file_reader:
+                for row in data:
                     skip_to_next_iteration = False
 
                     # Validate non-empty records first
@@ -142,7 +143,10 @@ def display_average_grade_all_students():
         sum_of_all_grades += math.ceil(float(student[3]))
         student_count += 1
 
-    print(f'\nAverage grade of all students: {sum_of_all_grades / student_count:.1f}\n')
+    if len(student_records) == 0:
+        print('\nNo valid student records exist to calculate average grade.\n')
+    else:
+        print(f'\nAverage grade of all students: {sum_of_all_grades / student_count:.1f}\n')
 
 
 def display_average_grade_each_program():
@@ -161,37 +165,46 @@ def display_average_grade_each_program():
             sum_of_all_grades_mscm += math.ceil(float(student[3]))
             student_count_mscm += 1
 
-    print('\nAverage grade of all students in each program')
-    print(f'MSIT: {sum_of_all_grades_msit / student_count_msit:.1f}')
-    print(f'MSCM: {sum_of_all_grades_mscm / student_count_mscm:.1f}\n')
+    if len(student_records) == 0:
+        print('\nNo valid student records exist to calculate average grade in each program.\n')
+    else:
+        print('\nAverage grade of all students in each program')
+        print(f'MSIT: {sum_of_all_grades_msit / student_count_msit:.1f}')
+        print(f'MSCM: {sum_of_all_grades_mscm / student_count_mscm:.1f}\n')
 
 
 def display_highest_grade_record():
-    highest_grade = 0
+    highest_grade = None
 
     # Loop through all records and compare grade to current highest grade
     for student in student_records:
-        if float(student[3]) > highest_grade:
-            highest_grade = float(student[3])
+        if highest_grade is None or float(student[3]) > float(highest_grade[3]):
+            highest_grade = [student[0], f'{student[2]}, {student[1]}', student[4], student[3]]
 
-    print(f'\nHighest student grade: {highest_grade:.1f}\n')
+    if len(student_records) == 0:
+        print('\nNo valid student records exist to calculate highest grade.\n')
+    else:
+        print('\nHighest student grade\n')
+        draw_table([highest_grade], ['Student ID', 'Last, First Name', 'Program', 'Grade'])
 
 
 def display_lowest_grade_record():
-    lowest_grade = 100
+    lowest_grade = None
 
     # Loop through all records and compare grade to current lowest grade
     for student in student_records:
-        if float(student[3]) < lowest_grade:
-            lowest_grade = float(student[3])
+        if lowest_grade is None or float(student[3]) < float(lowest_grade[3]):
+            lowest_grade = [student[0], f'{student[2]}, {student[1]}', student[4], student[3]]
 
-    print(f'\nLowest student grade: {lowest_grade:.1f}\n')
+    if len(student_records) == 0:
+        print('\nNo valid student records exist to calculate lowest grade.\n')
+    else:
+        print(f'\nLowest student grade\n')
+        draw_table([lowest_grade], ['Student ID', 'Last, First Name', 'Program', 'Grade'])
 
 
 def display_students_in_msit_program():
     formatted_records = []
-
-    print('\nStudents in MSIT program:\n')
 
     # Loop through all records and add to formatted records list if program is MSIT
     for student in student_records:
@@ -199,13 +212,16 @@ def display_students_in_msit_program():
             formatted_records.append([student[0], f'{student[2]}, {student[1]}', student[3]])
 
     formatted_records.sort(key=lambda x: x[1])  # sort records by last name for easier reading
-    draw_table(formatted_records, ['Student ID', 'Last, First Name', 'Grade'])
+
+    if len(student_records) == 0:
+        print('\nNo valid student records exist to display students in MSIT program.\n')
+    else:
+        print('\nStudents in MSIT program:\n')
+        draw_table(formatted_records, ['Student ID', 'Last, First Name', 'Grade'])
 
 
 def display_students_in_mscm_program():
     formatted_records = []
-
-    print('\nStudents in MSCM program:\n')
 
     # Loop through all records and add to formatted records list if program is MSCM
     for student in student_records:
@@ -213,19 +229,26 @@ def display_students_in_mscm_program():
             formatted_records.append([student[0], f'{student[2]}, {student[1]}', student[3]])
 
     formatted_records.sort(key=lambda x: x[1])  # sort records by last name for easier reading
-    draw_table(formatted_records, ['Student ID', 'Last, First Name', 'Grade'])
+
+    if len(student_records) == 0:
+        print('\nNo valid student records exist to display students in MSCM program.\n')
+    else:
+        print('\nStudents in MSCM program:\n')
+        draw_table(formatted_records, ['Student ID', 'Last, First Name', 'Grade'])
 
 
 def display_all_students_sorted_by_student_id():
     sorted_records = sorted(student_records, key=lambda x: x[0])  # Sort where x[0] is student ID
     formatted_records = []
 
-    print('\nAll students sorted by student ID:\n')
-
     for record in sorted_records:
         formatted_records.append([record[0], f'{record[2]}, {record[1]}', record[4], record[3]])
 
-    draw_table(formatted_records, ['Student ID', 'Last, First Name', 'Program', 'Grade'])
+    if len(student_records) == 0:
+        print('\nNo valid student records exist to display all students sorted by student ID.\n')
+    else:
+        print('\nAll students sorted by student ID:\n')
+        draw_table(formatted_records, ['Student ID', 'Last, First Name', 'Program', 'Grade'])
 
 
 def draw_table(data, labels):
@@ -284,10 +307,14 @@ def verify_python_3():
         sys.exit(1)
 
 
-if __name__ == "__main__":
+def main():
     verify_python_3()
     handle_file_input()
 
     while True:
         display_user_options()
         handle_option_input()
+
+
+if __name__ == "__main__":
+    main()
