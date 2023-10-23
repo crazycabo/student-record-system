@@ -168,25 +168,27 @@ def display_average_grade_each_program():
 
 
 def display_highest_grade_record():
-    highest_grade = 0
+    highest_grade = None
 
     # Loop through all records and compare grade to current highest grade
     for student in student_records:
-        if float(student[3]) > highest_grade:
-            highest_grade = float(student[3])
+        if highest_grade is None or float(student[3]) > float(highest_grade[3]):
+            highest_grade = [student[0], f'{student[2]}, {student[1]}', student[4], student[3]]
 
-    print(f'\nHighest student grade: {highest_grade:.1f}\n')
+    print('\nHighest student grade\n')
+    draw_table([highest_grade], ['Student ID', 'Last, First Name', 'Program', 'Grade'])
 
 
 def display_lowest_grade_record():
-    lowest_grade = 100
+    lowest_grade = None
 
     # Loop through all records and compare grade to current lowest grade
     for student in student_records:
-        if float(student[3]) < lowest_grade:
-            lowest_grade = float(student[3])
+        if lowest_grade is None or float(student[3]) < float(lowest_grade[3]):
+            lowest_grade = [student[0], f'{student[2]}, {student[1]}', student[4], student[3]]
 
-    print(f'\nLowest student grade: {lowest_grade:.1f}\n')
+    print(f'\nLowest student grade\n')
+    draw_table([lowest_grade], ['Student ID', 'Last, First Name', 'Program', 'Grade'])
 
 
 def display_students_in_msit_program():
