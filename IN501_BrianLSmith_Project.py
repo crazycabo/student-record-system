@@ -20,12 +20,13 @@ def handle_file_input():
 
             with open(file_name, 'r') as file:
                 file_reader = csv.reader(file, delimiter=',')
+                data = list(file_reader)
 
                 # Check if file is empty
-                if file_reader.line_num == 0:
+                if len(data) == 0:
                     raise Exception('File is empty!')
 
-                for row in file_reader:
+                for row in data:
                     skip_to_next_iteration = False
 
                     # Validate non-empty records first
@@ -284,10 +285,14 @@ def verify_python_3():
         sys.exit(1)
 
 
-if __name__ == "__main__":
+def main():
     verify_python_3()
     handle_file_input()
 
     while True:
         display_user_options()
         handle_option_input()
+
+
+if __name__ == "__main__":
+    main()
