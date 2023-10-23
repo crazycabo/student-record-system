@@ -143,7 +143,10 @@ def display_average_grade_all_students():
         sum_of_all_grades += math.ceil(float(student[3]))
         student_count += 1
 
-    print(f'\nAverage grade of all students: {sum_of_all_grades / student_count:.1f}\n')
+    if len(student_records) == 0:
+        print('\nNo valid student records exist to calculate average grade.\n')
+    else:
+        print(f'\nAverage grade of all students: {sum_of_all_grades / student_count:.1f}\n')
 
 
 def display_average_grade_each_program():
@@ -162,9 +165,12 @@ def display_average_grade_each_program():
             sum_of_all_grades_mscm += math.ceil(float(student[3]))
             student_count_mscm += 1
 
-    print('\nAverage grade of all students in each program')
-    print(f'MSIT: {sum_of_all_grades_msit / student_count_msit:.1f}')
-    print(f'MSCM: {sum_of_all_grades_mscm / student_count_mscm:.1f}\n')
+    if len(student_records) == 0:
+        print('\nNo valid student records exist to calculate average grade in each program.\n')
+    else:
+        print('\nAverage grade of all students in each program')
+        print(f'MSIT: {sum_of_all_grades_msit / student_count_msit:.1f}')
+        print(f'MSCM: {sum_of_all_grades_mscm / student_count_mscm:.1f}\n')
 
 
 def display_highest_grade_record():
@@ -175,8 +181,11 @@ def display_highest_grade_record():
         if highest_grade is None or float(student[3]) > float(highest_grade[3]):
             highest_grade = [student[0], f'{student[2]}, {student[1]}', student[4], student[3]]
 
-    print('\nHighest student grade\n')
-    draw_table([highest_grade], ['Student ID', 'Last, First Name', 'Program', 'Grade'])
+    if len(student_records) == 0:
+        print('\nNo valid student records exist to calculate highest grade.\n')
+    else:
+        print('\nHighest student grade\n')
+        draw_table([highest_grade], ['Student ID', 'Last, First Name', 'Program', 'Grade'])
 
 
 def display_lowest_grade_record():
@@ -187,8 +196,11 @@ def display_lowest_grade_record():
         if lowest_grade is None or float(student[3]) < float(lowest_grade[3]):
             lowest_grade = [student[0], f'{student[2]}, {student[1]}', student[4], student[3]]
 
-    print(f'\nLowest student grade\n')
-    draw_table([lowest_grade], ['Student ID', 'Last, First Name', 'Program', 'Grade'])
+    if len(student_records) == 0:
+        print('\nNo valid student records exist to calculate lowest grade.\n')
+    else:
+        print(f'\nLowest student grade\n')
+        draw_table([lowest_grade], ['Student ID', 'Last, First Name', 'Program', 'Grade'])
 
 
 def display_students_in_msit_program():
@@ -201,8 +213,11 @@ def display_students_in_msit_program():
 
     formatted_records.sort(key=lambda x: x[1])  # sort records by last name for easier reading
 
-    print('\nStudents in MSIT program:\n')
-    draw_table(formatted_records, ['Student ID', 'Last, First Name', 'Grade'])
+    if len(student_records) == 0:
+        print('\nNo valid student records exist to display students in MSIT program.\n')
+    else:
+        print('\nStudents in MSIT program:\n')
+        draw_table(formatted_records, ['Student ID', 'Last, First Name', 'Grade'])
 
 
 def display_students_in_mscm_program():
@@ -215,8 +230,11 @@ def display_students_in_mscm_program():
 
     formatted_records.sort(key=lambda x: x[1])  # sort records by last name for easier reading
 
-    print('\nStudents in MSCM program:\n')
-    draw_table(formatted_records, ['Student ID', 'Last, First Name', 'Grade'])
+    if len(student_records) == 0:
+        print('\nNo valid student records exist to display students in MSCM program.\n')
+    else:
+        print('\nStudents in MSCM program:\n')
+        draw_table(formatted_records, ['Student ID', 'Last, First Name', 'Grade'])
 
 
 def display_all_students_sorted_by_student_id():
@@ -226,8 +244,11 @@ def display_all_students_sorted_by_student_id():
     for record in sorted_records:
         formatted_records.append([record[0], f'{record[2]}, {record[1]}', record[4], record[3]])
 
-    print('\nAll students sorted by student ID:\n')
-    draw_table(formatted_records, ['Student ID', 'Last, First Name', 'Program', 'Grade'])
+    if len(student_records) == 0:
+        print('\nNo valid student records exist to display all students sorted by student ID.\n')
+    else:
+        print('\nAll students sorted by student ID:\n')
+        draw_table(formatted_records, ['Student ID', 'Last, First Name', 'Program', 'Grade'])
 
 
 def draw_table(data, labels):
