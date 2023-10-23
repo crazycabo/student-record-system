@@ -194,21 +194,19 @@ def display_lowest_grade_record():
 def display_students_in_msit_program():
     formatted_records = []
 
-    print('\nStudents in MSIT program:\n')
-
     # Loop through all records and add to formatted records list if program is MSIT
     for student in student_records:
         if student[4] == 'MSIT':
             formatted_records.append([student[0], f'{student[2]}, {student[1]}', student[3]])
 
     formatted_records.sort(key=lambda x: x[1])  # sort records by last name for easier reading
+
+    print('\nStudents in MSIT program:\n')
     draw_table(formatted_records, ['Student ID', 'Last, First Name', 'Grade'])
 
 
 def display_students_in_mscm_program():
     formatted_records = []
-
-    print('\nStudents in MSCM program:\n')
 
     # Loop through all records and add to formatted records list if program is MSCM
     for student in student_records:
@@ -216,6 +214,8 @@ def display_students_in_mscm_program():
             formatted_records.append([student[0], f'{student[2]}, {student[1]}', student[3]])
 
     formatted_records.sort(key=lambda x: x[1])  # sort records by last name for easier reading
+
+    print('\nStudents in MSCM program:\n')
     draw_table(formatted_records, ['Student ID', 'Last, First Name', 'Grade'])
 
 
@@ -223,11 +223,10 @@ def display_all_students_sorted_by_student_id():
     sorted_records = sorted(student_records, key=lambda x: x[0])  # Sort where x[0] is student ID
     formatted_records = []
 
-    print('\nAll students sorted by student ID:\n')
-
     for record in sorted_records:
         formatted_records.append([record[0], f'{record[2]}, {record[1]}', record[4], record[3]])
 
+    print('\nAll students sorted by student ID:\n')
     draw_table(formatted_records, ['Student ID', 'Last, First Name', 'Program', 'Grade'])
 
 
