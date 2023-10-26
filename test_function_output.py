@@ -35,6 +35,7 @@ def test_display_average_grade(capsys):
     instance.display_average_grade_all_students()
 
     captured = capsys.readouterr()
+
     assert captured.out == '\nAverage grade of all students: 64.3\n\n'
 
 
@@ -69,3 +70,23 @@ def test_display_lowest_grade_record(capsys):
                            'Student ID | Last, First Name | Program | Grade\n' \
                            '-------------------------------------------------\n' \
                            '1007       | [Synthetic], Ash | MSIT    | 0    \n\n'
+
+
+def test_display_students_in_msit_program(capsys):
+    assert False
+
+
+def test_display_students_in_mscm_program(capsys):
+    assert False
+
+
+def test_display_all_students_sorted_by_student_id(capsys):
+    assert False
+
+
+def test_display_invalid_records(capsys):
+    assert False
+
+
+def test_create_invalid_records_file(capsys):
+    assert False
