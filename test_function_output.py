@@ -46,3 +46,26 @@ def test_display_average_grade_for_each_program(capsys):
 
     assert captured.out == '\nAverage grade of all students in each program\nMSIT: 62.5\nMSCM: 66.7\n\n'
 
+
+def test_display_highest_grade_record(capsys):
+    instance = setup_application_instance()
+    instance.display_highest_grade_record()
+
+    captured = capsys.readouterr()
+
+    assert captured.out == '\nHighest student grade\n\n' \
+                           'Student ID | Last, First Name | Program | Grade\n' \
+                           '-------------------------------------------------\n' \
+                           '1001       | Dallas, Arthur   | MSIT    | 100  \n\n'
+
+
+def test_display_lowest_grade_record(capsys):
+    instance = setup_application_instance()
+    instance.display_lowest_grade_record()
+
+    captured = capsys.readouterr()
+
+    assert captured.out == '\nLowest student grade\n\n' \
+                           'Student ID | Last, First Name | Program | Grade\n' \
+                           '-------------------------------------------------\n' \
+                           '1007       | [Synthetic], Ash | MSIT    | 0    \n\n'
