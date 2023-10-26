@@ -1,6 +1,8 @@
 # Student Record System
 This is the course project for Purdue Global IN501 Fundamentals of Computer Programming.
 
+[![Build and Test](https://github.com/crazycabo/student-record-system/actions/workflows/python-app.yml/badge.svg)](https://github.com/crazycabo/student-record-system/actions/workflows/python-app.yml)
+
 ## Functionality
 1. Ask user to input the name of a valid record file within the same directory as the program root.
 2. If the file does not exist, print error message and request input again.
