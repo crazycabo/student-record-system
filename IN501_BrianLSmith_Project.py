@@ -52,7 +52,8 @@ def handle_file_input():
                     # If record is valid, add to student records list
                     student_records.append(row)
 
-            print(f'\nFound {len(student_records)} student records and {len(invalid_student_records)} are invalid.\n')
+            print(f'\nImported {len(student_records) + len(invalid_student_records)} '
+                  f'student records and {len(invalid_student_records)} are invalid.\n')
 
             valid_file_exists = True
 
@@ -65,7 +66,7 @@ def handle_file_input():
 
 
 def display_user_options():
-    print('Choose one of the following options')
+    print('\nChoose one of the following options')
     print('----------------------------------------------')
     print('1. Display average grade for all students')
     print('2. Display average grade for each program')
@@ -82,14 +83,14 @@ def display_user_options():
 def handle_option_input():
     valid_option_input = False
     user_input = None
-    error_message = 'You must enter an integer from 0 to 9. Please try again.\n'
+    error_message = 'Invalid option entered. Please try again.\n'
 
     # Loop input request until valid input is received
     while not valid_option_input:
         try:
-            user_input = int(input('Input option by number: '))
+            user_input = input('Input option number (type \'menu\' to display options or \'exit\' to quit): ')
 
-            if user_input not in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]:
+            if user_input.lower() not in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'menu', 'exit']:
                 print(error_message)
                 continue
 
@@ -99,39 +100,42 @@ def handle_option_input():
         except ValueError:
             print(error_message)
 
-    if user_input == 1:
+    if user_input == '1':
         display_average_grade_all_students()
 
-    elif user_input == 2:
+    elif user_input == '2':
         display_average_grade_each_program()
 
-    elif user_input == 3:
+    elif user_input == '3':
         display_highest_grade_record()
 
-    elif user_input == 4:
+    elif user_input == '4':
         display_lowest_grade_record()
 
-    elif user_input == 5:
+    elif user_input == '5':
         display_students_in_msit_program()
 
-    elif user_input == 6:
+    elif user_input == '6':
         display_students_in_mscm_program()
 
-    elif user_input == 7:
+    elif user_input == '7':
         display_all_students_sorted_by_student_id()
 
-    elif user_input == 8:
+    elif user_input == '8':
         display_invalid_records()
 
-    elif user_input == 9:
+    elif user_input == '9':
         create_invalid_records_file()
 
-    elif user_input == 0:
-        # Exit program by user request
+    elif user_input.lower() == 'menu':
+        display_user_options()
+
+    elif user_input.lower() == 'exit':
+        print('\nExiting program...')
         sys.exit(0)
 
     else:
-        print('Invalid option selected. Please try again.\n')
+        print('\nInvalid option selected. Please try again.\n')
 
 
 def display_average_grade_all_students():
@@ -312,7 +316,6 @@ def main():
     handle_file_input()
 
     while True:
-        display_user_options()
         handle_option_input()
 
 
