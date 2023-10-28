@@ -31,6 +31,25 @@ def setup_application_instance():
     return instance
 
 
+def test_display_user_options(capsys):
+    instance = setup_application_instance()
+    instance.display_user_options()
+
+    captured = capsys.readouterr()
+
+    assert captured.out == '\nChoose one of the following options\n' \
+                           '----------------------------------------------\n' \
+                           '1. Display average grade for all students\n' \
+                           '2. Display average grade for each program\n' \
+                           '3. Display highest grade record\n' \
+                           '4. Display lowest grade record\n' \
+                           '5. Display all students in MSIT program\n' \
+                           '6. Display all students in MSCM program\n' \
+                           '7. Display all students in sorted order by student ID\n' \
+                           '8. Display invalid records\n' \
+                           '9. Create new file containing invalid records\n\n'
+
+
 def test_display_average_grade(capsys):
     instance = setup_application_instance()
     instance.display_average_grade_all_students()
