@@ -76,8 +76,7 @@ def display_user_options():
     print('6. Display all students in MSCM program')
     print('7. Display all students in sorted order by student ID')
     print('8. Display invalid records')
-    print('9. Create new file containing invalid records')
-    print('0. Exit program\n')
+    print('9. Create new file containing invalid records\n')
 
 
 def handle_option_input():
