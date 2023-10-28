@@ -1,4 +1,5 @@
 import IN501_BrianLSmith_Project
+import csv
 
 valid_student_records = [
     ['1001', 'Arthur', 'Dallas', '100', 'MSIT'],
@@ -141,4 +142,10 @@ def test_create_invalid_records_file(capsys):
     instance = setup_application_instance()
     instance.create_invalid_records_file()
 
-    assert False
+    with open('BADRECORDS.TXT', 'r') as file:
+        file_reader = csv.reader(file, delimiter=',')
+        data = list(file_reader)
+
+        for row in data:
+            if row not in invalid_student_records:
+                assert False
