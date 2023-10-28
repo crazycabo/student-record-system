@@ -73,20 +73,72 @@ def test_display_lowest_grade_record(capsys):
 
 
 def test_display_students_in_msit_program(capsys):
-    assert False
+    instance = setup_application_instance()
+    instance.display_students_in_msit_program()
+
+    captured = capsys.readouterr()
+
+    assert captured.out == '\nStudents in MSIT program:\n\n' \
+                           'Student ID | Last, First Name | Grade\n' \
+                           '---------------------------------------\n' \
+                           '1001       | Dallas, Arthur   | 100  \n' \
+                           '1005       | Lambert, Joan    | 70   \n' \
+                           '1003       | Ripley, Ellen    | 80   \n' \
+                           '1007       | [Synthetic], Ash | 0    \n\n'
 
 
 def test_display_students_in_mscm_program(capsys):
-    assert False
+    instance = setup_application_instance()
+    instance.display_students_in_mscm_program()
+
+    captured = capsys.readouterr()
+
+    assert captured.out == '\nStudents in MSCM program:\n\n' \
+                           'Student ID | Last, First Name | Grade\n' \
+                           '---------------------------------------\n' \
+                           '1006       | Brett, Samuel    | 50   \n' \
+                           '1002       | Kane, Thomas     | 90   \n' \
+                           '1004       | Parker, Dennis   | 60   \n\n'
 
 
 def test_display_all_students_sorted_by_student_id(capsys):
-    assert False
+    instance = setup_application_instance()
+    instance.display_all_students_sorted_by_student_id()
+
+    captured = capsys.readouterr()
+
+    assert captured.out == '\nAll students sorted by student ID:\n\n' \
+                           'Student ID | Last, First Name | Program | Grade\n' \
+                           '-------------------------------------------------\n' \
+                           '1001       | Dallas, Arthur   | MSIT    | 100  \n' \
+                           '1002       | Kane, Thomas     | MSCM    | 90   \n' \
+                           '1003       | Ripley, Ellen    | MSIT    | 80   \n' \
+                           '1004       | Parker, Dennis   | MSCM    | 60   \n' \
+                           '1005       | Lambert, Joan    | MSIT    | 70   \n' \
+                           '1006       | Brett, Samuel    | MSCM    | 50   \n' \
+                           '1007       | [Synthetic], Ash | MSIT    | 0    \n\n'
 
 
 def test_display_invalid_records(capsys):
-    assert False
+    instance = setup_application_instance()
+    instance.display_invalid_records()
+
+    captured = capsys.readouterr()
+
+    assert captured.out == '\nInvalid Records\n' \
+                           '---------------\n' \
+                           "['', 'Alpha', 'User', '45', 'MSIT']\n" \
+                           "['2000', '', 'User', '20', 'MSCM']\n" \
+                           "['3000', 'Charlie', '', '10', 'MSCM']\n" \
+                           "['4000', 'Delta', 'User', '', 'MSIT']\n" \
+                           "['5000', 'Echo', 'User', '95', '']\n" \
+                           "['6000', 'Golf', 'User', '-50', 'MSIT']\n" \
+                           "['7000', 'Hotel', 'User', '120', 'MSCM']\n" \
+                           "['8000', 'Foxtrot', 'User', '100', 'BUJI']\n\n"
 
 
 def test_create_invalid_records_file(capsys):
+    instance = setup_application_instance()
+    instance.create_invalid_records_file()
+
     assert False
