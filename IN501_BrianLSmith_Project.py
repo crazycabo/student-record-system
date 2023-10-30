@@ -12,7 +12,7 @@ def handle_file_input():
     while not valid_file_exists:
         try:
             print('Enter the name of a file relative to this program\'s path.')
-            file_name = input('File name: ')
+            file_name = input('File name (or type \'exit\' to quit): ')
 
             if file_name.lower() == 'exit':
                 # Exit program by user request
